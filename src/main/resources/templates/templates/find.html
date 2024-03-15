@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sample</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	</head>
+	<body>
+		<h1 class="display-4 mb-4" th:text="${title}"></h1>
+		<p th;text="${msg}"></p>
+		<form method="post" action="/find">
+			<div class="input-group">
+				<input type="text" class="form-control me-1" name="find_str" th:value="${value}"/>
+				<span class="input-group-btn">
+					<input type="submit" class="btn btn-primary px-4" value="Click"/>
+				</span>
+			</div>
+		</form>
+		
+		<table class="table">
+			<thead>
+				<tr><th>ID</th><th>Name</th><th>Mail</th><th>Pass_O</th><th>Pass_A</th></tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${data}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.mail}"></td>
+					<td th:text="${item.pass_O}"></td>
+					<td th:text="${item.pass_A}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

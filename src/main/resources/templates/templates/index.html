@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sample</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </head>
+<body class="controller">
+	<h1 class="display-4 mb-4" th:text="${title}"></h1>
+	<p th:text="${msg}"></p>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<form method="post" action="/" th:object="${formModel}">
+		<style>.err{color:red}</style>
+		
+		<div class="mb-3">
+			<label for="name" class="form-label">Name</label>
+			<input type="text" class="form-control" name="name" th:value="*{name}" th:errorclass="err"/>
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th;errorclass="err"></div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="name" class="form-label">Mail</label>
+			<input type="text" class="form-control" name="mail" th:value="*{mail}" th:errorclass="err"/>
+			<div th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" th;errorclass="err"></div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="name" class="form-label">Pass</label>
+			<input type="text" class="form-control" name="pass_O" th:value="*{pass_O}" id="pass_O" th:errorclass="err"/>
+			<div th:if="${#fields.hasErrors('pass_O')}" th:errors="*{pass_O}" th;errorclass="err"></div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="name" class="form-label">Pass</label>
+			<input type="text" class="form-control" name="pass_A" th:value="*{pass_A}" id="pass_A" th:errorclass="err"/>
+			<div th:if="${#fields.hasErrors('pass_A')}" th:errors="*{pass_A}" th;errorclass="err"></div>
+		</div>
+		
+		<input type="submit" class="btn btn-primary" value="Create" />
+	</form>
+	
+	<table class="table">
+		<thead>
+			<tr><th>ID</th><th>Name</th><th>Mail</th><th>Pass</th><th>Pass</th></tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="item : ${data}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.mail}"></td>
+				<td th:text="${item.pass_O}"></td>
+				<td th:text="${item.pass_A}"></td>				
+			</tr>
+		</tbody>
+		
+	</table>
+</body>
+</html>
